@@ -1,0 +1,44 @@
+@keyframes rebond {
+  0% {
+    opacity: 0;
+    transform: scale(1- (1 * 1));
+  }
+
+  16% {
+    transform: scale(1- (-0.32 * 1));
+  }
+
+  28% {
+    transform: scale(1- (0.13 * 1));
+  }
+
+  44% {
+    transform: scale(1- (-0.05 * 1));
+  }
+
+  59% {
+    transform: scale(1- (0.02 * 1));
+  }
+
+  73% {
+    transform: scale(1- (-0.01 * 1));
+  }
+
+  88% {
+    transform: scale(1- (0 * 1));
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1- (0 * 1));
+  }
+}
+
+@keyframes rot {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
