@@ -1,36 +1,39 @@
 @keyframes rebond {
   0% {
     opacity: 0;
-    transform: scale(1- (1 * 1));
+    transform: translateY(1 * -500px);
+  }
+  1% {
+    opacity: 1;
   }
 
   16% {
-    transform: scale(1- (-0.32 * 1));
+    transform: translateY(-0.32 * -500px);
   }
 
   28% {
-    transform: scale(1- (0.13 * 1));
+    transform: translateY(0.13 * -500px);
   }
 
   44% {
-    transform: scale(1- (-0.05 * 1));
+    transform: translateY(-0.05 * -500px);
   }
 
   59% {
-    transform: scale(1- (0.02 * 1));
+    transform: translateY(0.02 * -500px);
   }
 
   73% {
-    transform: scale(1- (-0.01 * 1));
+    transform: translateY(-0.01 * -500px);
   }
 
   88% {
-    transform: scale(1- (0 * 1));
+    transform: translateY(0 * -500px);
   }
 
   100% {
     opacity: 1;
-    transform: scale(1- (0 * 1));
+    transform: translateY(0 * -500px);
   }
 }
 
