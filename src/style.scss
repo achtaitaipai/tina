@@ -331,6 +331,13 @@ a:visited {
     top: -2rem;
     right: 0;
     max-height: 7rem;
+    transform: translate(200px, -50px) rotate(-80deg);
+    opacity: 0;
+    transition: transform 1.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    &.onScreen {
+      opacity: 1;
+      transform: translate(0, 0) rotate(0);
+    }
   }
 }
 
