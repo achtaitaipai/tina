@@ -21,6 +21,12 @@ const translationArr = Array.from(
   { length: elems.length },
   () => randomNumber(50, 100) * randItem([-1, 1])
 )
+elems.forEach((el, i) => {
+  el.style.setProperty(
+    'transform',
+    `translateY(${-translationArr[i]}%) rotate(${-rotationsArr[i]}deg)`
+  )
+})
 lscroll.on('scroll', (obj) => {
   const seuil = 0.4
   for (const key of Object.keys(obj.currentElements)) {
