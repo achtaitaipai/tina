@@ -1,24 +1,58 @@
 import './style.scss'
+import { map, clamp, randomNumber, randItem } from './utils'
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { TimelineMax } from 'gsap/gsap-core'
+// import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import LocomotiveScroll from 'locomotive-scroll'
 
-gsap.registerPlugin(ScrollTrigger)
-
-const sections = gsap.utils.toArray('.panel')
-
-gsap.to(sections, {
-  xPercent: -100 * (sections.length - 1),
-  ease: 'none',
-  scrollTrigger: {
-    trigger: '.main',
-    pin: true,
-    scrub: 1,
-    // snap: 1 / (sections.length - 1),
-    // base vertical scrolling on how wide the container is so it feels more natural.
-    end: '+=' + window.innerWidth * (sections.length - 1),
-  },
+const lscroll = new LocomotiveScroll({
+  el: document.querySelector('[data-scroll-container]'),
+  smooth: true,
+  direction: 'horizontal',
+  multiplier: 1,
+  repeat: true,
 })
+
+// let's rotate the elements when scrolling.
+const elems = [...document.querySelectorAll('.photoConcert, .iframe-clip')]
+const rotationsArr = Array.from({ length: elems.length }, () =>
+  randomNumber(-60, 60)
+)
+const translationArr = Array.from(
+  { length: elems.length },
+  () => randomNumber(50, 100) * randItem([-1, 1])
+)
+lscroll.on('scroll', (obj) => {
+  const seuil = 0.4
+  for (const key of Object.keys(obj.currentElements)) {
+    const el = obj.currentElements[key].el
+    const idx = elems.indexOf(el)
+    if (
+      obj.currentElements[key].el.classList.contains('photoConcert') ||
+      obj.currentElements[key].el.classList.contains('iframe-clip')
+    ) {
+      const progress = obj.currentElements[key].progress
+      const rotationVal = map(
+        progress,
+        0,
+        1,
+        -rotationsArr[idx],
+        rotationsArr[idx]
+      )
+      const translationVal = map(
+        progress,
+        0,
+        1,
+        -translationArr[idx],
+        translationArr[idx]
+      )
+      el.style.setProperty(
+        'transform',
+        `translateY(${translationVal}%) rotate(${rotationVal}deg)`
+      )
+    }
+  }
+})
+lscroll.update()
 
 const animObserver = new IntersectionObserver(
   (entries) => {

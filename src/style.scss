@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import 'animations';
+@import 'locomotive';
 *,
 *::before,
 *::after {
@@ -11,45 +12,57 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  overflow-x: hidden;
   background-color: blueviolet;
+  // background: linear-gradient(135deg, blueviolet, #ff6767);
+  overflow: hidden;
 }
+// body::after {
+//   content: '';
+//   position: fixed;
+//   width: 2px;
+//   top: 0;
+//   bottom: 0;
+//   left: calc(50% - 1px);
+//   background: red;
+// }
 .distort {
   display: none;
 }
 .main {
   // 100% * nombre de panels
-  width: 800%;
-  display: flex;
-  flex-wrap: nowrap;
+  // width: 800%;
+  // height: 800%;
+  // display: flex;
+  // flex-direction: column;
+  // flex-wrap: nowrap;
 }
 
 .panel {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: grid;
   place-items: center;
   overflow: hidden;
+  white-space: normal;
 }
 a,
 a:visited {
   color: blue;
 }
-.header {
-  position: absolute;
-  z-index: 100;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+
+.intro {
+  position: relative;
+  grid-template-columns: repeat(12, 1fr);
   &__title {
-    padding: 0.7rem 1rem;
+    position: absolute;
+    left: 2rem;
+    top: 3rem;
     font-size: 4rem;
     font-style: italic;
     text-decoration: underline double;
     transform-origin: center;
     text-transform: uppercase;
   }
-}
-.intro {
-  grid-template-columns: repeat(12, 1fr);
   &__critique {
     grid-column: 2 / span 6;
     grid-row: 1;
@@ -112,7 +125,6 @@ a:visited {
       width: 100%;
       img {
         max-width: 100%;
-        opacity: 0;
         // animation: rebond 0.8s ease-out 0s 1 both paused;
       }
     }
@@ -134,7 +146,7 @@ a:visited {
       }
     }
     &.onScreen .cd__imgContainer img {
-      animation: rebond 0.8s ease-out 0s 1 both;
+      // animation: rebond 0.8s ease-out 0s 1 both;
       // animation-play-state: running;
     }
   }
@@ -330,7 +342,7 @@ a:visited {
     transform: translate(200px, -50px) rotate(-80deg);
     opacity: 0;
     transition: transform 1.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    &.onScreen {
+    &.is-inview {
       opacity: 1;
       transform: translate(0, 0) rotate(0);
     }
@@ -359,7 +371,7 @@ a:visited {
     top: 0;
     bottom: 0;
     z-index: -1;
-    animation: rot 10s ease-out 0.3s infinite both;
+    animation: rot 10s ease-in-out 0.3s infinite both;
     img {
       object-fit: cover;
       width: 100%;
