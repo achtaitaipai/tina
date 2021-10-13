@@ -9,6 +9,9 @@ export class AudioPlayer {
     this.title = this.element.querySelector('.titre')
     this.duree = this.element.querySelector('.duree')
     this.progressBar = this.element.querySelector('.progressBar')
+    this.progressBarContainer = this.element.querySelector(
+      '.progressBarContainer'
+    )
     this.audios = Array.from(this.element.querySelectorAll('audio'))
 
     this.idx = 0
@@ -20,6 +23,7 @@ export class AudioPlayer {
     this.next = this.next.bind(this)
     this.prev = this.prev.bind(this)
     this.timeUpdate = this.timeUpdate.bind(this)
+    this.setTime = this.setTime.bind(this)
     this.playBtn.addEventListener('click', this.play)
     this.nextBtn.addEventListener('click', this.next)
     this.prevBtn.addEventListener('click', this.prev)
@@ -62,6 +66,7 @@ export class AudioPlayer {
     this.playBtn.addEventListener('click', this.pause)
     this.currentAudio.addEventListener('timeupdate', this.timeUpdate)
     this.currentAudio.addEventListener('ended', this.next)
+    this.progressBarContainer.addEventListener('click', this.setTime)
   }
 
   timeUpdate() {
@@ -78,5 +83,12 @@ export class AudioPlayer {
     const seconds = Math.floor(secs % 60)
     const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`
     return `${minutes}:${returnedSeconds}`
+  }
+
+  setTime(e) {
+    const x = e.clientX - this.progressBarContainer.getBoundingClientRect().x
+    const w = this.progressBarContainer.getBoundingClientRect().width
+    this.currentAudio.currentTime = (x / w) * this.currentAudio.duration
+    console.log(x)
   }
 }

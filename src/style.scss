@@ -449,13 +449,14 @@ a:visited {
     background: #f7f3f0;
     min-height: 100%;
     width: 100%;
+    cursor: pointer;
   }
   .progressBar {
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
-    width: 25%;
+    width: 0%;
     background: #ffec58;
   }
   .titre {
