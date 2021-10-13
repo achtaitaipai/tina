@@ -1,8 +1,14 @@
+import '@fortawesome/fontawesome-free/js/all.js'
 import './style.scss'
-import { map, clamp, randomNumber, randItem } from './utils'
+import { map, randomNumber, randItem } from './utils'
+import { floating } from './anims'
+import { DraggableBox } from './draggableBox'
+import { AudioPlayer } from './audioPlayer'
 import { gsap } from 'gsap'
 // import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import LocomotiveScroll from 'locomotive-scroll'
+
+const player = new AudioPlayer(document.querySelector('.player'))
 
 const lscroll = new LocomotiveScroll({
   el: document.querySelector('[data-scroll-container]'),
@@ -12,14 +18,16 @@ const lscroll = new LocomotiveScroll({
   repeat: true,
 })
 
+customElements.define('draggable-box', DraggableBox, { extends: 'div' })
+
 // let's rotate the elements when scrolling.
-const elems = [...document.querySelectorAll('.photoConcert, .iframe-clip')]
+const elems = [...document.querySelectorAll('.floating')]
 const rotationsArr = Array.from({ length: elems.length }, () =>
-  randomNumber(-60, 60)
+  randomNumber(-30, 30)
 )
 const translationArr = Array.from(
   { length: elems.length },
-  () => randomNumber(50, 100) * randItem([-1, 1])
+  () => randomNumber(25, 50) * randItem([-1, 1])
 )
 elems.forEach((el, i) => {
   el.style.setProperty(
@@ -27,73 +35,43 @@ elems.forEach((el, i) => {
     `translateY(${-translationArr[i]}%) rotate(${-rotationsArr[i]}deg)`
   )
 })
+
+let scroll = { cache: 0, current: 0 }
+
 lscroll.on('scroll', (obj) => {
-  const seuil = 0.4
   for (const key of Object.keys(obj.currentElements)) {
     const el = obj.currentElements[key].el
     const idx = elems.indexOf(el)
-    if (
-      obj.currentElements[key].el.classList.contains('photoConcert') ||
-      obj.currentElements[key].el.classList.contains('iframe-clip')
-    ) {
-      const progress = obj.currentElements[key].progress
-      const rotationVal = map(
-        progress,
-        0,
-        1,
-        -rotationsArr[idx],
-        rotationsArr[idx]
-      )
-      const translationVal = map(
-        progress,
-        0,
-        1,
-        -translationArr[idx],
-        translationArr[idx]
-      )
-      el.style.setProperty(
-        'transform',
-        `translateY(${translationVal}%) rotate(${rotationVal}deg)`
-      )
+    if (obj.currentElements[key].el.classList.contains('floating')) {
+      floating(obj.currentElements[key], rotationsArr[idx], translationArr[idx])
+    } else if (obj.currentElements[key].el.classList.contains('tapis__card')) {
+      scroll.current = obj.scroll.x
+      const distance = scroll.current - scroll.cache
+      scroll.cache = scroll.current
+      const turb = document.querySelector('#noise feDisplacementMap')
+      const Sc = map(distance, -50, 50, -100, 100)
+      turb.setAttribute('scale', Sc)
     }
   }
 })
+
 lscroll.update()
 
-const animObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && entry.intersectionRatio >= 0.5)
-        entry.target.classList.add('onScreen')
-      else if (entry.intersectionRatio <= 0)
-        entry.target.classList.remove('onScreen')
-    })
-  },
-  {
-    threshold: [0.5, 0],
-  }
-)
-
-const toAnim = Array.from(document.querySelectorAll('.js-anim'))
-toAnim.forEach((el) => {
-  animObserver.observe(el)
-})
-
-const tapisObserver = new IntersectionObserver(
-  (entries) => {
-    const entry = entries[0]
-    const turb = document.querySelectorAll('#noise feDisplacementMap')[0]
-    const tapis = document.querySelector('.tapis__imgContainer')
-    if (entry.intersectionRatio >= 0.5) {
-      gsap.to(turb, { attr: { scale: 0 }, duration: 2, ease: 'elastic' })
-      gsap.to(tapis, { y: 0, duration: 2, ease: 'bounce' })
-    } else if (!entry.isIntersecting) {
-      gsap.set(turb, { attr: { scale: 5000 } })
-      gsap.set(tapis, { y: -700 })
-    }
-  },
-  {
-    threshold: [0.5, 0],
-  }
-)
-tapisObserver.observe(document.querySelector('.tapis'))
+// const tapisObserver = new IntersectionObserver(
+//   (entries) => {
+//     const entry = entries[0]
+//     const turb = document.querySelectorAll('#noise feDisplacementMap')[0]
+//     const tapis = document.querySelector('.tapis__imgContainer')
+//     if (entry.intersectionRatio >= 0.5) {
+//       gsap.to(turb, { attr: { scale: 0 }, duration: 2, ease: 'elastic' })
+//       gsap.to(tapis, { y: 0, duration: 2, ease: 'bounce' })
+//     } else if (!entry.isIntersecting) {
+//       gsap.set(turb, { attr: { scale: 5000 } })
+//       gsap.set(tapis, { y: -700 })
+//     }
+//   },
+//   {
+//     threshold: [0.5, 0],
+//   }
+// )
+// tapisObserver.observe(document.querySelector('.tapis'))
