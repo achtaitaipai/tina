@@ -213,34 +213,55 @@
             </figure>
           </section>
         </div>
+
+        <!-- PHOTOS -->
+
         <div data-scroll-section>
           <section class="photos panel">
-            <figure class="photos__imgContainer">
-              <img
-                src="./assets/images/photo1.JPG"
-                alt=""
-                data-scroll
-                class="floating"
-              />
+            <figure
+              class="photos__imgContainer floating"
+              data-scroll
+              data-rot="-8"
+            >
+              <img src="./assets/images/photo1.JPG" alt="" />
+              <figcaption class="photos__legende">
+                <p>
+                  La Mar, Rennes 18/06/21 5 minutes avant l'arrivée de la
+                  voisine
+                </p>
+              </figcaption>
             </figure>
-            <figure class="photos__imgContainer">
-              <img
-                src="./assets/images/photo2.JPG"
-                alt=""
-                data-scroll
-                class="floating"
-              />
+            <figure
+              class="photos__imgContainer floating"
+              data-scroll
+              data-rot="-5"
+            >
+              <img src="./assets/images/photo2.JPG" alt="" />
+              <figcaption class="photos__legende">
+                <p>
+                  Festival intergalactique des accordéonistes, Saint-Gravé
+                  02/07/21, ça y est ça marche
+                </p>
+              </figcaption>
             </figure>
-            <figure class="photos__imgContainer">
-              <img
-                src="./assets/images/photo3.JPG"
-                alt=""
-                data-scroll
-                class="floating"
-              />
+            <figure
+              class="photos__imgContainer floating"
+              data-scroll
+              data-rot="3"
+            >
+              <img src="./assets/images/photo3.JPG" alt="" />
+              <figcaption class="photos__legende">
+                <p>
+                  Festival intergalactique des accordéonistes, Saint-Gravé
+                  02/07/21, quand rien ne marche
+                </p>
+              </figcaption>
             </figure>
           </section>
         </div>
+
+        <!-- TAPIS -->
+
         <div data-scroll-section>
           <section class="tapis panel">
             <article class="tapis__card" data-scroll>
@@ -261,7 +282,7 @@
                   <feDisplacementMap
                     in="SourceGraphic"
                     in2="noise"
-                    scale="1000"
+                    scale="0"
                     xChannelSelector="R"
                     yChannelSelector="B"
                     x="0%"
@@ -280,6 +301,9 @@
                   filter="url(#noise)"
                 ></image>
               </svg>
+              <!-- <div class="tapis__imgContainer">
+                <img src="./assets/images/tapis1.png" alt="" />
+              </div> -->
               <div class="tapis__infos">
                 <h3 class="tapis__titre">Plancher de danse,</h3>
                 <p>
@@ -290,6 +314,9 @@
             </article>
           </section>
         </div>
+
+        <!-- CONTACT -->
+
         <div data-scroll-section>
           <section class="contact panel">
             <form action="post" class="contact__form">
@@ -314,6 +341,9 @@
             </form>
           </section>
         </div>
+
+        <!-- FOOTER -->
+
         <div data-scroll-section>
           <footer class="footer panel">
             <div class="footer__container">
@@ -332,7 +362,9 @@
         </div>
       </main>
     </div>
+
     <div class="player">
+      <div class="player__handle"><i class="fas fa-music"></i></div>
       <button class="prevBtn"><i class="fas fa-backward"></i></button>
       <button class="playBtn">
         <i class="fas fa-play play"></i><i class="fas fa-pause pause"></i>

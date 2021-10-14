@@ -8,6 +8,7 @@ import { gsap } from 'gsap'
 // import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import LocomotiveScroll from 'locomotive-scroll'
 
+// eslint-disable-next-line no-unused-vars
 const player = new AudioPlayer(document.querySelector('.player'))
 
 const lscroll = new LocomotiveScroll({
@@ -29,6 +30,7 @@ const translationArr = Array.from(
   { length: elems.length },
   () => randomNumber(25, 50) * randItem([-1, 1])
 )
+
 elems.forEach((el, i) => {
   el.style.setProperty(
     'transform',
@@ -36,7 +38,7 @@ elems.forEach((el, i) => {
   )
 })
 
-let scroll = { cache: 0, current: 0 }
+const scroll = { cache: 0, current: 0 }
 
 lscroll.on('scroll', (obj) => {
   for (const key of Object.keys(obj.currentElements)) {
@@ -51,27 +53,14 @@ lscroll.on('scroll', (obj) => {
       const turb = document.querySelector('#noise feDisplacementMap')
       const Sc = map(distance, -50, 50, -100, 100)
       turb.setAttribute('scale', Sc)
+      const hauteur =
+        ((Math.sin(obj.currentElements[key].progress * 20) + 1) * 20) / 2
+      const tapis = obj.currentElements[key].el.querySelector(
+        '.tapis__imgContainer'
+      )
+      tapis.style.transform = `translateY(${hauteur}px)`
     }
   }
 })
 
 lscroll.update()
-
-// const tapisObserver = new IntersectionObserver(
-//   (entries) => {
-//     const entry = entries[0]
-//     const turb = document.querySelectorAll('#noise feDisplacementMap')[0]
-//     const tapis = document.querySelector('.tapis__imgContainer')
-//     if (entry.intersectionRatio >= 0.5) {
-//       gsap.to(turb, { attr: { scale: 0 }, duration: 2, ease: 'elastic' })
-//       gsap.to(tapis, { y: 0, duration: 2, ease: 'bounce' })
-//     } else if (!entry.isIntersecting) {
-//       gsap.set(turb, { attr: { scale: 5000 } })
-//       gsap.set(tapis, { y: -700 })
-//     }
-//   },
-//   {
-//     threshold: [0.5, 0],
-//   }
-// )
-// tapisObserver.observe(document.querySelector('.tapis'))

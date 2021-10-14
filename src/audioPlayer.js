@@ -13,6 +13,7 @@ export class AudioPlayer {
       '.progressBarContainer'
     )
     this.audios = Array.from(this.element.querySelectorAll('audio'))
+    this.handlePlayer = this.element.querySelector('.player__handle')
 
     this.idx = 0
     this.currentAudio = this.audios[this.idx]
@@ -22,11 +23,14 @@ export class AudioPlayer {
     this.pause = this.pause.bind(this)
     this.next = this.next.bind(this)
     this.prev = this.prev.bind(this)
+    this.showPlayer = this.showPlayer.bind(this)
+    this.hidePlayer = this.hidePlayer.bind(this)
     this.timeUpdate = this.timeUpdate.bind(this)
     this.setTime = this.setTime.bind(this)
     this.playBtn.addEventListener('click', this.play)
     this.nextBtn.addEventListener('click', this.next)
     this.prevBtn.addEventListener('click', this.prev)
+    this.handlePlayer.addEventListener('click', this.showPlayer)
   }
 
   next() {
@@ -90,5 +94,29 @@ export class AudioPlayer {
     const w = this.progressBarContainer.getBoundingClientRect().width
     this.currentAudio.currentTime = (x / w) * this.currentAudio.duration
     console.log(x)
+  }
+
+  showPlayer() {
+    this.element.classList.add('visible')
+    this.handlePlayer.removeEventListener('click', this.showPlayer)
+    document.addEventListener('click', this.hidePlayer)
+  }
+
+  hidePlayer(e) {
+    let targetElement = e.target // clicked element
+
+    do {
+      if (targetElement === this.element) {
+        // This is a click inside. Do nothing, just return.
+        document.getElementById('flyout-debug').textContent = 'Clicked inside!'
+        return
+      }
+      // Go up the DOM
+      targetElement = targetElement.parentNode
+    } while (targetElement)
+
+    this.element.classList.remove('visible')
+    this.handlePlayer.addEventListener('click', this.showPlayer)
+    document.removeEventListener('click', this.hidePlayer)
   }
 }

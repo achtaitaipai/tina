@@ -59,6 +59,7 @@ export class DraggableBox extends HTMLDivElement {
     this.handle.addEventListener('mousedown', this.onDragStart, {
       passive: false,
     })
+    this.closeBtn.addEventListener('click', () => this.remove())
   }
 
   onDragStart(e) {
