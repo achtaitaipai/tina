@@ -27,6 +27,7 @@ export class AudioPlayer {
     this.hidePlayer = this.hidePlayer.bind(this)
     this.timeUpdate = this.timeUpdate.bind(this)
     this.setTime = this.setTime.bind(this)
+    this.resetTimer = this.resetTimer.bind(this)
     this.playBtn.addEventListener('click', this.play)
     this.nextBtn.addEventListener('click', this.next)
     this.prevBtn.addEventListener('click', this.prev)
@@ -92,13 +93,14 @@ export class AudioPlayer {
     const x = e.clientX - this.progressBarContainer.getBoundingClientRect().x
     const w = this.progressBarContainer.getBoundingClientRect().width
     this.currentAudio.currentTime = (x / w) * this.currentAudio.duration
-    console.log(x)
+    this.timeUpdate()
   }
 
   showPlayer(e) {
     e.preventDefault()
     this.element.classList.add('visible')
     this.handlePlayer.removeEventListener('click', this.showPlayer)
+    this.element.addEventListener('mousemove', this.resetTimer)
     document.addEventListener('click', this.hidePlayer)
     this.resetTimer()
   }
@@ -118,6 +120,8 @@ export class AudioPlayer {
     this.element.classList.remove('visible')
     this.handlePlayer.addEventListener('click', this.showPlayer)
     document.removeEventListener('click', this.hidePlayer)
+    if (this.t) clearTimeout(this.t)
+    // this.element.removeEventListener('mousemove', this.resetTimer)
   }
 
   resetTimer() {
@@ -126,6 +130,6 @@ export class AudioPlayer {
       this.element.classList.remove('visible')
       this.handlePlayer.addEventListener('click', this.showPlayer)
       document.removeEventListener('click', this.hidePlayer)
-    }, 6000)
+    }, 4000)
   }
 }

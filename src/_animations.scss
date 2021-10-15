@@ -45,3 +45,18 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes float {
+  0% {
+    filter: drop-shadow(0 5px 14px rgba(0, 0, 0, 0.3));
+    transform: translatey(0px) scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 35px 14px rgba(0, 0, 0, 0.5));
+    transform: translatey(-30px) scale(1.03);
+  }
+  100% {
+    filter: drop-shadow(0 5px 14px rgba(0, 0, 0, 0.3));
+    transform: translatey(0px) scale(1);
+  }
+}

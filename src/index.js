@@ -21,7 +21,6 @@ const lscroll = new LocomotiveScroll({
 
 customElements.define('draggable-box', DraggableBox, { extends: 'div' })
 
-// let's rotate the elements when scrolling.
 const elems = [...document.querySelectorAll('.floating')]
 const rotationsArr = Array.from({ length: elems.length }, () =>
   randomNumber(-30, 30)
@@ -58,7 +57,7 @@ lscroll.on('scroll', (obj) => {
       const tapis = obj.currentElements[key].el.querySelector(
         '.tapis__imgContainer'
       )
-      tapis.style.transform = `translateY(${hauteur}px)`
+      // tapis.style.transform = `translateY(${hauteur}px)`
     }
   }
 })

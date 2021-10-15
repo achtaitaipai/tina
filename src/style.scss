@@ -43,8 +43,10 @@ a:visited {
     left: 1rem;
     bottom: 1rem;
     font-size: 4rem;
+    font-weight: 400;
+    color: white;
     font-style: italic;
-    text-decoration: underline double;
+    text-decoration: underline;
     transform-origin: center;
     text-transform: uppercase;
     z-index: 1;
@@ -353,7 +355,7 @@ a:visited {
       height: 100%;
       opacity: 1;
       color: white;
-      font-weight: 600;
+      font-family: Georgia, 'Times New Roman', Times, serif;
       display: grid;
       place-items: center;
       text-align: justify;
@@ -364,7 +366,7 @@ a:visited {
         width: 70%;
         aspect-ratio: 1;
         padding: 1rem;
-        border: 1px solid white;
+        // border: 1px solid white;
         display: grid;
         place-items: center;
       }
@@ -389,13 +391,9 @@ a:visited {
   }
   &__imgContainer {
     height: 100%;
-    img {
-      max-height: 100%;
-      display: block;
-      margin: auto;
-      -webkit-filter: url(#noise);
-      filter: url(#noise);
-    }
+    animation: float 6s ease-in-out infinite;
+    // filter: drop-shadow(0 25px 14px rgba(0, 0, 0, 0.6));
+    // transform: translatey(-20px);
   }
   &__infos {
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -514,15 +512,15 @@ a:visited {
   position: fixed;
   left: 0;
   right: 0;
-  top: 0;
-  transform: translateY(-100%);
+  top: -2.4rem;
+  transform: translateY(0%);
   background: #ece296;
   display: flex;
   align-items: stretch;
   font-size: 0;
   transition: transform 0.3s ease;
   &.visible {
-    transform: translateY(0);
+    transform: translateY(100%);
   }
   &__handle {
     position: absolute;
