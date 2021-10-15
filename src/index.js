@@ -4,7 +4,7 @@ import { map, randomNumber, randItem } from './utils'
 import { floating } from './anims'
 import { DraggableBox } from './draggableBox'
 import { AudioPlayer } from './audioPlayer'
-import { gsap } from 'gsap'
+// import { gsap } from 'gsap'
 // import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import LocomotiveScroll from 'locomotive-scroll'
 
@@ -54,7 +54,7 @@ lscroll.on('scroll', (obj) => {
       const Sc = map(distance, -50, 50, -100, 100)
       turb.setAttribute('scale', Sc)
       const hauteur =
-        ((Math.sin(obj.currentElements[key].progress * 20) + 1) * 20) / 2
+        ((Math.sin(obj.currentElements[key].progress * 15) + 1) * 40) / 2
       const tapis = obj.currentElements[key].el.querySelector(
         '.tapis__imgContainer'
       )

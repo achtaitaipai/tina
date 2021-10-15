@@ -39,7 +39,6 @@ export class AudioPlayer {
     this.idx = (this.idx + 1) % this.audios.length
     this.currentAudio = this.audios[this.idx]
     this.title.textContent = this.currentAudio.getAttribute('data-title')
-    console.log(this.currentAudio)
     this.play()
   }
 
@@ -96,10 +95,12 @@ export class AudioPlayer {
     console.log(x)
   }
 
-  showPlayer() {
+  showPlayer(e) {
+    e.preventDefault()
     this.element.classList.add('visible')
     this.handlePlayer.removeEventListener('click', this.showPlayer)
     document.addEventListener('click', this.hidePlayer)
+    this.resetTimer()
   }
 
   hidePlayer(e) {
@@ -107,8 +108,7 @@ export class AudioPlayer {
 
     do {
       if (targetElement === this.element) {
-        // This is a click inside. Do nothing, just return.
-        document.getElementById('flyout-debug').textContent = 'Clicked inside!'
+        this.resetTimer()
         return
       }
       // Go up the DOM
@@ -118,5 +118,14 @@ export class AudioPlayer {
     this.element.classList.remove('visible')
     this.handlePlayer.addEventListener('click', this.showPlayer)
     document.removeEventListener('click', this.hidePlayer)
+  }
+
+  resetTimer() {
+    if (this.t) clearTimeout(this.t)
+    this.t = window.setTimeout(() => {
+      this.element.classList.remove('visible')
+      this.handlePlayer.addEventListener('click', this.showPlayer)
+      document.removeEventListener('click', this.hidePlayer)
+    }, 6000)
   }
 }

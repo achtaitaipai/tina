@@ -41,7 +41,7 @@ a:visited {
   &__title {
     position: absolute;
     left: 1rem;
-    top: 1rem;
+    bottom: 1rem;
     font-size: 4rem;
     font-style: italic;
     text-decoration: underline double;
@@ -72,7 +72,7 @@ a:visited {
     background-color: #bff5e6;
     grid-column: 7 / span 4;
     grid-row: 1;
-    transform: rotate(-10deg);
+    transform: rotate(-5deg);
     font-size: 0.8rem;
     width: 90%;
     // max-height: 100%;
@@ -124,7 +124,7 @@ a:visited {
   .pochette {
     grid-row: 1;
     grid-column: 3 / span 4;
-    transform: rotate(10deg);
+    transform: rotate(5deg);
     img {
       max-width: 100%;
       // animation: rebond 0.8s ease-out 0.5s 1 both paused;
@@ -162,10 +162,6 @@ a:visited {
         font-style: italic;
       }
     }
-    &.onScreen .cd__imgContainer img {
-      // animation: rebond 0.8s ease-out 0s 1 both;
-      // animation-play-state: running;
-    }
   }
 }
 
@@ -174,41 +170,91 @@ a:visited {
   grid-template-rows: repeat(2, 1fr);
   place-content: center;
   .clip {
+    position: relative;
     width: 100%;
-    iframe {
+    display: grid;
+    place-items: center;
+    border-radius: 5px;
+    overflow: hidden;
+    background: linear-gradient(black, white 90%);
+    &__player {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: black;
+      opacity: 0.8;
+      border-radius: 50% / 10%;
+      font-size: 1rem; /* change this to change size */
+      height: 3em;
+      margin: 20px auto;
+      padding: 0;
+      text-align: center;
+      text-indent: 0.1em;
+      transition: all 150ms ease-out;
+      width: 4em;
+      cursor: pointer;
+      &::before {
+        background: inherit;
+        border-radius: 5% / 50%;
+        bottom: 9%;
+        content: '';
+        left: -5%;
+        position: absolute;
+        right: -5%;
+        top: 9%;
+      }
+      &::after {
+        border-style: solid;
+        border-width: 1em 0 1em 1.732em;
+        border-color: transparent transparent transparent rgba(255, 255, 255, 1);
+        content: ' ';
+        font-size: 0.75em;
+        height: 0;
+        margin: -1em 0 0 -0.75em;
+        top: 50%;
+        position: absolute;
+        width: 0;
+      }
+    }
+    img {
+      object-fit: cover;
       width: 100%;
-      height: auto;
-      aspect-ratio: 16/9;
+      display: block;
     }
     &:nth-child(1) {
       grid-column: 3 / span 4;
       grid-row: 1;
       align-self: flex-end;
-      transform: rotate(-4deg);
     }
     &:nth-child(2) {
       grid-column: 7 / span 4;
       grid-row: 1;
       align-self: flex-end;
-      transform: rotate(5deg);
     }
     &:nth-child(3) {
       grid-column: 2 / span 4;
       grid-row: 2;
       align-self: flex-start;
-      transform: rotate(5deg);
     }
     &:nth-child(4) {
       grid-column: 8 / span 4;
       grid-row: 2;
       align-self: flex-start;
-      transform: rotate(5deg);
     }
     &:nth-child(5) {
       grid-column: 5 / span 4;
       grid-row: 2;
       align-self: flex-start;
-      transform: rotate(-4deg);
+    }
+    &:hover {
+      z-index: 10;
+      img {
+        opacity: 0.4;
+      }
+      .clip__player {
+        background: red;
+      }
     }
   }
 }
@@ -262,7 +308,12 @@ a:visited {
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(6, 1fr);
   &__imgContainer {
+    background: black;
     position: relative;
+    width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    cursor: pointer;
     &:nth-child(1) {
       grid-column: 2 / span 4;
       grid-row: 2 / span 3;
@@ -280,20 +331,26 @@ a:visited {
       // transform: rotate(6deg);
     }
     img {
-      max-width: 100%;
       transition: opacity 0.3s ease-out;
+      object-fit: cover;
+      width: 100%;
+      display: block;
+      // display: none;
     }
-    &:hover {
+    &:hover,
+    &:focus {
+      z-index: 10;
       img {
-        opacity: 0.8;
+        opacity: 0.4;
       }
     }
     figcaption {
       position: absolute;
+      display: block;
       left: 0;
       top: 0;
-      right: 0;
-      bottom: 0;
+      width: 100%;
+      height: 100%;
       opacity: 1;
       color: white;
       font-weight: 600;
@@ -312,7 +369,8 @@ a:visited {
         place-items: center;
       }
     }
-    &:hover {
+    &:hover,
+    &:focus {
       figcaption {
         transform: scale(1);
       }
@@ -548,46 +606,3 @@ a:visited {
     mix-blend-mode: color-burn;
   }
 }
-
-// .play {
-//   background: black;
-//   opacity:0.8;
-//   border-radius: 50% / 10%;
-//   font-size: 2em; /* change this to change size */
-//   height: 3em;
-//   margin: 20px auto;
-//   padding: 0;
-//   position: relative;
-//   text-align: center;
-//   text-indent: 0.1em;
-//   transition: all 150ms ease-out;
-//   width: 4em;
-//   cursor:pointer;
-// }
-
-// .play:hover {
-//   background: red;
-// }
-
-// .play::before {
-//   background: inherit;
-//   border-radius: 5% / 50%;
-//   bottom: 9%;
-//   content: "";
-//   left: -5%;
-//   position: absolute;
-//   right: -5%;
-//   top: 9%;
-// }
-// .play::after {
-//   border-style: solid;
-//   border-width: 1em 0 1em 1.732em;
-//   border-color: transparent transparent transparent rgba(255, 255, 255, 1);
-//   content: ' ';
-//   font-size: 0.75em;
-//   height: 0;
-//   margin: -1em 0 0 -0.75em;
-//   top: 50%;
-//   position: absolute;
-//   width: 0;
-// }
