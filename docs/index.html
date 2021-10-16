@@ -4,17 +4,137 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Tina Thorner</title>
     <script src="index.bundle.js" defer></script>
   </head>
   <body>
     <div data-scroll-container>
       <main class="main">
         <div data-scroll-section>
-          <!-- INTRO -->
+          <!-- ACCUEIL -->
+          <section class="accueil panel">
+            <h1 class="accueil__title">
+              Tina Thorner <span>Fanny Alizon</span>
+            </h1>
+            <div
+              class="accueil__postit postit"
+              is="draggable-box"
+              container=".accueil"
+            >
+              <div slot="content">
+                <button class="postit__closeBtn closeBtn">X</button>
+                <h3>Concerts</h3>
+                <ul>
+                  <li>premier</li>
+                  <li>deuxieme</li>
+                  <li>troisieme</li>
+                </ul>
+              </div>
+            </div>
+            <nav class="accueil__nav">
+              <a href="#" class="accueil__link" data-link="#album">
+                <img
+                  src="./assets/images/vignetteCD.png"
+                  class="accueil__vignette accueil__vignette--normal"
+                  alt=""
+                />
+                <img
+                  src="./assets/images/vignetteCD2.png"
+                  class="accueil__vignette accueil__vignette--hover"
+                  alt=""
+                />
+              </a>
+              <a href="#" class="accueil__link" data-link="#intro">
+                <img
+                  src="./assets/images/vignetteTINA.png"
+                  class="accueil__vignette accueil__vignette--normal"
+                  alt=""
+                />
+                <img
+                  src="./assets/images/vignetteTINA2.png"
+                  class="accueil__vignette accueil__vignette--hover"
+                  alt=""
+                />
+              </a>
+              <a href="#" class="accueil__link" data-link="#photos">
+                <img
+                  src="./assets/images/vignetteFLASH.png"
+                  class="accueil__vignette accueil__vignette--normal"
+                  alt=""
+                />
+                <img
+                  src="./assets/images/vignetteFLASH2.png"
+                  class="accueil__vignette accueil__vignette--hover"
+                  alt=""
+                />
+              </a>
+              <a href="#" class="accueil__link" data-link="#vin">
+                <img
+                  src="./assets/images/vignetteVIN.png"
+                  class="accueil__vignette accueil__vignette--normal"
+                  alt=""
+                />
+                <img
+                  src="./assets/images/vignetteVIN2.png"
+                  class="accueil__vignette accueil__vignette--hover"
+                  alt=""
+                />
+              </a>
+              <a href="#" class="accueil__link" data-link="#contact">
+                <img
+                  src="./assets/images/vignetteLETTRE.png"
+                  class="accueil__vignette accueil__vignette--normal"
+                  alt=""
+                />
+                <img
+                  src="./assets/images/vignetteLETTRE2.png"
+                  class="accueil__vignette accueil__vignette--hover"
+                  alt=""
+                />
+              </a>
+              <a href="#" class="accueil__link" data-link="#clips">
+                <img
+                  src="./assets/images/vignetteORDI.png"
+                  class="accueil__vignette accueil__vignette--normal"
+                  alt=""
+                />
+                <img
+                  src="./assets/images/vignetteORDI2.png"
+                  class="accueil__vignette accueil__vignette--hover"
+                  alt=""
+                />
+              </a>
+              <a href="#" class="accueil__link" data-link="#tapis">
+                <img
+                  src="./assets/images/vignettePIED.png"
+                  class="accueil__vignette accueil__vignette--normal"
+                  alt=""
+                />
+                <img
+                  src="./assets/images/vignettePIED2.png"
+                  class="accueil__vignette accueil__vignette--hover"
+                  alt=""
+                />
+              </a>
+              <a href="#" class="accueil__link" data-link="#promo">
+                <img
+                  src="./assets/images/vignetteKDO.png"
+                  class="accueil__vignette accueil__vignette--normal"
+                  alt=""
+                />
+                <img
+                  src="./assets/images/vignetteKDO2.png"
+                  class="accueil__vignette accueil__vignette--hover"
+                  alt=""
+                />
+              </a>
+            </nav>
+          </section>
+        </div>
 
+        <!-- INTRO -->
+        <div data-scroll-section id="intro">
           <section class="intro panel">
-            <h1 class="intro__title">Tina Thorner</h1>
             <a href="#" class="intro__critique">
               <img src="./assets/images/vivonzeureux.png" alt="" />
             </a>
@@ -102,7 +222,7 @@
 
         <!-- ALBUM -->
 
-        <div data-scroll-section>
+        <div data-scroll-section id="album">
           <section class="album panel">
             <article class="pochette">
               <img
@@ -132,7 +252,7 @@
 
         <!-- VIN -->
 
-        <div data-scroll-section>
+        <div data-scroll-section id="vin">
           <section class="vin panel">
             <figure class="vin__paroles">
               <img src="./assets/images/parolesrose.png" alt="" />
@@ -155,34 +275,49 @@
 
         <!-- CLIPS -->
 
-        <div data-scroll-section>
+        <div data-scroll-section id="clips">
           <section class="clips panel">
             <figure class="clip floating" data-rot="-4" data-scroll>
-              <a href="#">
+              <a
+                href="https://www.youtube.com/watch?v=vChrvY4UNUw"
+                target="blank"
+              >
                 <img src="./assets/images/musette.png" alt="" />
                 <div class="clip__player"></div>
               </a>
             </figure>
             <figure class="clip floating" data-rot="5" data-scroll>
-              <a href="#">
+              <a
+                href="https://www.youtube.com/watch?v=j4hauLaoYj4"
+                target="blank"
+              >
                 <img src="./assets/images/baldepromos.png" alt="" />
                 <div class="clip__player"></div>
               </a>
             </figure>
             <figure class="clip floating" data-rot="5" data-scroll>
-              <a href="#">
+              <a
+                href="https://www.youtube.com/watch?v=txt4OAZEJ3w"
+                target="blank"
+              >
                 <img src="./assets/images/tourdefrance.png" alt="" />
                 <div class="clip__player"></div>
               </a>
             </figure>
             <figure class="clip floating" data-rot="5" data-scroll>
-              <a href="#">
+              <a
+                href="https://www.youtube.com/watch?v=FKwCQ1r4uXQ"
+                target="blank"
+              >
                 <img src="./assets/images/pommesnoisettes.png" alt="" />
                 <div class="clip__player"></div>
               </a>
             </figure>
             <figure class="clip floating" data-rot="-4" data-scroll>
-              <a href="#">
+              <a
+                href="https://www.youtube.com/watch?v=RZ_6lv1O2CA"
+                target="blank"
+              >
                 <img src="./assets/images/clés.png" alt="" />
                 <div class="clip__player"></div>
               </a>
@@ -192,7 +327,7 @@
 
         <!-- PHOTOS -->
 
-        <div data-scroll-section>
+        <div data-scroll-section id="photos">
           <section class="photos panel">
             <figure
               class="photos__imgContainer floating"
@@ -238,7 +373,7 @@
 
         <!-- TAPIS -->
 
-        <div data-scroll-section>
+        <div data-scroll-section id="tapis">
           <section class="tapis panel">
             <article class="tapis__card" data-scroll>
               <svg viewBox="0 0 500 500" class="tapis__imgContainer">
@@ -293,7 +428,7 @@
 
         <!-- CONTACT -->
 
-        <div data-scroll-section>
+        <div data-scroll-section id="contact">
           <section class="contact panel">
             <form action="post" class="contact__form">
               <img
@@ -331,7 +466,6 @@
                 <a href="http://achtaitaipai.free.fr" target="blank">lui</a>
                 et conçu par
                 <a href="http://fannyalizon.free.fr" target="blank">moi</a>.
-                <span>charles est vraiment trop fort.</span>
               </p>
             </div>
           </footer>

@@ -38,7 +38,6 @@ elems.forEach((el, i) => {
 })
 
 const scroll = { cache: 0, current: 0 }
-
 lscroll.on('scroll', (obj) => {
   for (const key of Object.keys(obj.currentElements)) {
     const el = obj.currentElements[key].el
@@ -52,14 +51,26 @@ lscroll.on('scroll', (obj) => {
       const turb = document.querySelector('#noise feDisplacementMap')
       const Sc = map(distance, -50, 50, -100, 100)
       turb.setAttribute('scale', Sc)
-      const hauteur =
-        ((Math.sin(obj.currentElements[key].progress * 15) + 1) * 40) / 2
-      const tapis = obj.currentElements[key].el.querySelector(
-        '.tapis__imgContainer'
-      )
+      // const hauteur =
+      //   ((Math.sin(obj.currentElements[key].progress * 15) + 1) * 40) / 2
+      // const tapis = obj.currentElements[key].el.querySelector(
+      //   '.tapis__imgContainer'
+      // )
       // tapis.style.transform = `translateY(${hauteur}px)`
     }
   }
 })
 
 lscroll.update()
+
+const vignettes = Array.from(document.querySelectorAll('.accueil__link'))
+
+vignettes.forEach((vign) => {
+  // const link=vign.getAttribute
+  vign.addEventListener('click', (e) => {
+    console.log(e.currentTarget)
+    const link = e.currentTarget.getAttribute('data-link')
+    lscroll.scrollTo(link)
+  })
+  // vign.addEventListener('click', alert('oui'))
+})

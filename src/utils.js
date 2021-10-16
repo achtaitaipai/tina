@@ -15,7 +15,7 @@ export function getCurrentRotation(el) {
     st.getPropertyValue('-o-transform') ||
     st.getPropertyValue('transform') ||
     'none'
-  if (tm != 'none') {
+  if (tm !== 'none') {
     const values = tm.split('(')[1].split(')')[0].split(',')
     const angle = Math.round(Math.atan2(values[1], values[0]) * (180 / Math.PI))
     return angle < 0 ? angle + 360 : angle
