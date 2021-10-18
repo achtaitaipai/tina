@@ -50,6 +50,9 @@ a:visited {
     border: none;
     font-weight: 800;
     cursor: pointer;
+    position: absolute;
+    right: 0.3rem;
+    top: 0.3rem;
   }
   &::before {
     content: '';
@@ -78,14 +81,12 @@ a:visited {
     position: absolute;
     left: 1rem;
     top: 85vh;
-    // left: 1rem;
-    // bottom: 1rem;
     font-size: 4rem;
     font-weight: 800;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-style: italic;
-    text-decoration: underline;
+    text-decoration: underline wavy #ffec58;
     transform-origin: center;
     text-transform: uppercase;
     z-index: 1;
@@ -119,27 +120,38 @@ a:visited {
   }
   .postit {
     z-index: 10;
+    max-width: 20%;
     position: absolute;
     right: 2rem;
     top: 2rem;
     background: #ffec58;
     font-family: Georgia, 'Times New Roman', Times, serif;
     & > div {
-      padding: 1rem 3rem 5rem 3rem;
+      padding: 1rem 1rem 5rem 1rem;
     }
-    // text-align: center;
     h3 {
-      font-size: 2rem;
-      align-self: center;
+      font-size: 1.5rem;
+      font-style: italic;
+      text-align: center;
+      margin-top: 0.5rem;
     }
     ul {
       text-align: left;
       font-style: italic;
-      max-width: 80%;
-      margin: 1rem auto 0 auto;
+      list-style: none;
+      // margin: 1rem auto 0 auto;
+    }
+    span {
+      text-decoration: line-through 1px black;
     }
   }
   &__link {
+    @for $i from 1 through 8 {
+      &:nth-child(#{$i}) {
+        animation: rebond 1s linear random(1500) + ms 1 both;
+        // background-color: lighten($base-color, $i * 5%);
+      }
+    }
     // width: 20%;
     display: grid;
     place-items: center;
@@ -521,6 +533,43 @@ a:visited {
     font-style: italic;
     span {
       text-decoration: line-through 1px black;
+    }
+  }
+}
+
+.promo {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  justify-content: center;
+  padding: 1rem 0;
+  &__imgContainer {
+    width: 100%;
+    height: 100%;
+    img {
+      object-fit: cover;
+      max-width: 100%;
+      height: 100%;
+    }
+    &:nth-child(1) {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      z-index: 1;
+      img {
+        display: block;
+        margin-left: auto;
+        &.is-inview {
+          animation: blop 1s linear 0.5s 1 both;
+        }
+      }
+    }
+    &:nth-child(2) {
+      grid-column: 1;
+      grid-row: 2 / span 6;
+      align-self: center;
+      height: 80%;
+      img {
+        transform: rotate(-5deg);
+      }
     }
   }
 }
