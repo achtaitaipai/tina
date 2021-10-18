@@ -37,104 +37,12 @@
                 </ul>
               </div>
             </div>
-            <nav class="accueil__nav">
-              <a href="#" class="accueil__link" data-link="#album">
-                <img
-                  src="./assets/images/vignetteCD.png"
-                  class="accueil__vignette accueil__vignette--normal"
-                  alt=""
-                />
-                <img
-                  src="./assets/images/vignetteCD2.png"
-                  class="accueil__vignette accueil__vignette--hover"
-                  alt=""
-                />
-              </a>
-              <a href="#" class="accueil__link" data-link="#intro">
-                <img
-                  src="./assets/images/vignetteTINA.png"
-                  class="accueil__vignette accueil__vignette--normal"
-                  alt=""
-                />
-                <img
-                  src="./assets/images/vignetteTINA2.png"
-                  class="accueil__vignette accueil__vignette--hover"
-                  alt=""
-                />
-              </a>
-              <a href="#" class="accueil__link" data-link="#photos">
-                <img
-                  src="./assets/images/vignetteFLASH.png"
-                  class="accueil__vignette accueil__vignette--normal"
-                  alt=""
-                />
-                <img
-                  src="./assets/images/vignetteFLASH2.png"
-                  class="accueil__vignette accueil__vignette--hover"
-                  alt=""
-                />
-              </a>
-              <a href="#" class="accueil__link" data-link="#vin">
-                <img
-                  src="./assets/images/vignetteVIN.png"
-                  class="accueil__vignette accueil__vignette--normal"
-                  alt=""
-                />
-                <img
-                  src="./assets/images/vignetteVIN2.png"
-                  class="accueil__vignette accueil__vignette--hover"
-                  alt=""
-                />
-              </a>
-              <a href="#" class="accueil__link" data-link="#contact">
-                <img
-                  src="./assets/images/vignetteLETTRE.png"
-                  class="accueil__vignette accueil__vignette--normal"
-                  alt=""
-                />
-                <img
-                  src="./assets/images/vignetteLETTRE2.png"
-                  class="accueil__vignette accueil__vignette--hover"
-                  alt=""
-                />
-              </a>
-              <a href="#" class="accueil__link" data-link="#clips">
-                <img
-                  src="./assets/images/vignetteORDI.png"
-                  class="accueil__vignette accueil__vignette--normal"
-                  alt=""
-                />
-                <img
-                  src="./assets/images/vignetteORDI2.png"
-                  class="accueil__vignette accueil__vignette--hover"
-                  alt=""
-                />
-              </a>
-              <a href="#" class="accueil__link" data-link="#tapis">
-                <img
-                  src="./assets/images/vignettePIED.png"
-                  class="accueil__vignette accueil__vignette--normal"
-                  alt=""
-                />
-                <img
-                  src="./assets/images/vignettePIED2.png"
-                  class="accueil__vignette accueil__vignette--hover"
-                  alt=""
-                />
-              </a>
-              <a href="#" class="accueil__link" data-link="#promo">
-                <img
-                  src="./assets/images/vignetteKDO.png"
-                  class="accueil__vignette accueil__vignette--normal"
-                  alt=""
-                />
-                <img
-                  src="./assets/images/vignetteKDO2.png"
-                  class="accueil__vignette accueil__vignette--hover"
-                  alt=""
-                />
-              </a>
-            </nav>
+            <img
+              src="./assets/images/accordeon.gif"
+              alt=""
+              class="accordeon"
+              data-scroll
+            />
           </section>
         </div>
 
@@ -442,6 +350,21 @@
             <figure class="promo__imgContainer">
               <img src="./assets/images/carte.png" alt="" />
             </figure>
+            <div class="window" is="draggable-box" handle=".window__handle">
+              <div slot="content">
+                <div class="window__handle">
+                  <h3 class="window__title">coucou</h3>
+                  <button class="window__closeBtn closeBtn">X</button>
+                </div>
+                <div class="window__content">
+                  <p class="window__text">
+                    Ma carte des départ-aimants est bientôt terminée !! Merci de
+                    me contacter pour tout échange ou don d'aimants.
+                  </p>
+                  <button class="window__confirmBtn closeBtn">Ok</button>
+                </div>
+              </div>
+            </div>
           </section>
         </div>
         <!-- CONTACT -->
@@ -492,12 +415,20 @@
     </div>
 
     <div class="player">
-      <div class="player__handle"><i class="fas fa-music"></i></div>
-      <button class="prevBtn"><i class="fas fa-backward"></i></button>
-      <button class="playBtn">
-        <i class="fas fa-play play"></i><i class="fas fa-pause pause"></i>
+      <div class="player__handle"><img src="./assets/images/zik.png" alt=""></i></div>
+      <button class="prevBtn">
+        <img src="./assets/images/zikprev.png" alt="" />
       </button>
-      <button class="nextBtn"><i class="fas fa-forward"></i></button>
+      <button class="playBtn">
+        <img src="./assets/images/zikplay.png" alt="" class="play" /><img
+          src="./assets/images/zikplay.png"
+          alt=""
+          class="pause"
+        />
+      </button>
+      <button class="nextBtn">
+        <img src="./assets/images/ziknext.png" alt="" />
+      </button>
       <div class="progressBarContainer">
         <div class="progressBar"></div>
         <span class="titre"></span>

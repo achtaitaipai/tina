@@ -54,8 +54,8 @@ export class AudioPlayer {
 
   pause() {
     this.currentAudio.pause()
-    this.playBtn.querySelector('.fa-play').style.display = 'inline'
-    this.playBtn.querySelector('.fa-pause').style.display = 'none'
+    this.playBtn.querySelector('.play').style.display = 'inline'
+    this.playBtn.querySelector('.pause').style.display = 'none'
     this.playBtn.removeEventListener('click', this.pause)
     this.playBtn.addEventListener('click', this.play)
     this.currentAudio.removeEventListener('timeupdate', this.timeUpdate)
@@ -64,8 +64,8 @@ export class AudioPlayer {
 
   play() {
     this.currentAudio.play()
-    this.playBtn.querySelector('.fa-play').style.display = 'none'
-    this.playBtn.querySelector('.fa-pause').style.display = 'inline'
+    this.playBtn.querySelector('.play').style.display = 'none'
+    this.playBtn.querySelector('.pause').style.display = 'inline'
     this.playBtn.removeEventListener('click', this.play)
     this.playBtn.addEventListener('click', this.pause)
     this.currentAudio.addEventListener('timeupdate', this.timeUpdate)

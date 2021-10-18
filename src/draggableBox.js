@@ -11,7 +11,7 @@ export class DraggableBox extends HTMLDivElement {
     this.container =
       document.querySelector(this.getAttribute('container')) || document.body
     this.handle = this.querySelector(this.getAttribute('handle')) || this
-    this.closeBtn = this.querySelector('.closeBtn')
+    this.closeBtn = [...this.querySelectorAll('.closeBtn')]
     this.handle.style.userSelect = 'none'
     this.x = 0
     this.y = 0
@@ -20,12 +20,12 @@ export class DraggableBox extends HTMLDivElement {
     this.translateX = 0
     this.translateY = 0
     this.rot = this.getCurrentRotation()
+    this.handle.style.cursor = 'grab'
     const shadow = this.attachShadow({ mode: 'open' })
     shadow.innerHTML = /* html */ `
             <style> 
             :host{
               position : relative;
-              cursor : grab;
             }
             </style>
             <slot name="content"></slot>
@@ -59,11 +59,15 @@ export class DraggableBox extends HTMLDivElement {
     this.handle.addEventListener('mousedown', this.onDragStart, {
       passive: false,
     })
-    this.closeBtn.addEventListener('click', () => this.remove())
+    this.closeBtn.forEach((btn) => {
+      btn.addEventListener('click', () =>
+        this.style.setProperty('display', 'none')
+      )
+    })
   }
 
   onDragStart(e) {
-    this.style.cursor = 'grabbing'
+    this.handle.style.cursor = 'grabbing'
     this.style.zIndex = this.findMaxZindex() + 1
     console.log('~ this.style.zIndex', this.style.zIndex)
 
@@ -105,7 +109,7 @@ export class DraggableBox extends HTMLDivElement {
   }
 
   onDragEnd(e) {
-    this.style.cursor = 'grab'
+    this.handle.style.cursor = 'grab'
     document.removeEventListener('touchmove', this.onDrag)
     document.removeEventListener('mousemove', this.onDrag)
     document.removeEventListener('touchend', this.onDragEnd)
